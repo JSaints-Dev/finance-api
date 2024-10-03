@@ -43,8 +43,11 @@ export class TransactionsController {
     );
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.transactionsService.remove(id);
+  @Delete(':transactionId')
+  remove(
+    @Param('transactionId', ParseUUIDPipe) transactionId: string,
+    @ActiveUserId() userId: string,
+  ) {
+    return this.transactionsService.remove(transactionId, userId);
   }
 }

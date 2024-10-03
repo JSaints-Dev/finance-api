@@ -81,7 +81,20 @@ export class TransactionsService {
     });
   }
 
-  async remove(transactionId: string) {}
+  async remove(transactionId: string, userId: string) {
+    await this.validateTransactionOwnershipService.validate({
+      transactionId,
+      userId,
+    });
+
+    await this.transactionsRepository.delete({
+      where: {
+        id: transactionId,
+      },
+    });
+
+    return 'Transaction deleted successfully';
+  }
 
   private async validateTransactionOwnership({
     bankAccountId,
