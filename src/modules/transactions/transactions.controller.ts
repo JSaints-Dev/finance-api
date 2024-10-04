@@ -17,8 +17,10 @@ import { ActiveUserId } from 'src/shared/decorators/active-user-id';
 import { ParseUUIDPipeOptional } from 'src/shared/pipes/parse-uuid-pipes-optional';
 import { ParseEnumPipeOptional } from 'src/shared/pipes/parse-enum-pipes-optional';
 import { TransactionCategoryType } from './entities/transaction';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('transactions')
+@ApiBearerAuth()
 export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 

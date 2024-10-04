@@ -12,8 +12,10 @@ import { BankAccountsService } from './bank-accounts.service';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { ActiveUserId } from 'src/shared/decorators/active-user-id';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('bank-accounts')
+@ApiBearerAuth()
 export class BankAccountsController {
   constructor(private readonly bankAccountsService: BankAccountsService) {}
 
