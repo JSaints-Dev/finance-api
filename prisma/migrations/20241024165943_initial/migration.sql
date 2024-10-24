@@ -7,9 +7,9 @@ CREATE TYPE "transaction_category_type" AS ENUM ('INCOME', 'OUTCOME');
 -- CreateTable
 CREATE TABLE "users" (
     "id" UUID NOT NULL,
-    "email" STRING NOT NULL,
-    "name" STRING NOT NULL,
-    "password" STRING NOT NULL,
+    "email" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -20,10 +20,10 @@ CREATE TABLE "users" (
 CREATE TABLE "bank_accounts" (
     "id" UUID NOT NULL,
     "user_id" UUID NOT NULL,
-    "initial_balance" FLOAT8 NOT NULL,
+    "initial_balance" DOUBLE PRECISION NOT NULL,
     "type" "bank_account_type" NOT NULL,
-    "color" STRING NOT NULL,
-    "name" STRING NOT NULL,
+    "color" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -34,8 +34,8 @@ CREATE TABLE "bank_accounts" (
 CREATE TABLE "categories" (
     "id" UUID NOT NULL,
     "user_id" UUID NOT NULL,
-    "name" STRING NOT NULL,
-    "icon" STRING NOT NULL,
+    "name" TEXT NOT NULL,
+    "icon" TEXT NOT NULL,
     "type" "transaction_category_type" NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
@@ -49,9 +49,9 @@ CREATE TABLE "transactions" (
     "user_id" UUID NOT NULL,
     "category_id" UUID,
     "bank_account_id" UUID NOT NULL,
-    "amount" FLOAT8 NOT NULL,
-    "name" STRING NOT NULL,
-    "description" STRING,
+    "amount" DOUBLE PRECISION NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
     "date" TIMESTAMP(3) NOT NULL,
     "type" "transaction_category_type" NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
